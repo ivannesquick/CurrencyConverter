@@ -14,8 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var inputLabel: UILabel!
+    
     private let toSelect = "toSelect"
     private let secSelect = "secSelect"
+    
     var networkManager = NetworkManager()
     var currency: [ExchangeRates]?
     var valueCurrency: Double?
@@ -28,15 +30,8 @@ class ViewController: UIViewController {
     @IBAction func changeValute(_ sender: Any) {
         if let iGetString = inputTextField.text {
             if let isDouble = Double(iGetString) {
-                if valueSecCurrency! > valueCurrency! {
-                    var outValue = isDouble * valueCurrency!
+                let outValue = isDouble * valueSecCurrency! / valueCurrency!
                     outputLabel.text = "\(outValue)"
-                }
-                if valueSecCurrency! < valueCurrency! {
-                    var outValue = isDouble * valueSecCurrency! / valueCurrency!
-                    outputLabel.text = "\(outValue)"
-                }
-                
             }
         }
     }
