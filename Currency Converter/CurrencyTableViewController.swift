@@ -28,7 +28,8 @@ class CurrencyTableViewController: UITableViewController, CurrencyTableViewProto
     
     
     func getData() {
-        networkManager.downloadData(url: "https://www.cbr-xml-daily.ru/daily_json.js") { (result) in
+        networkManager.downloadData(url: "https://www.cbr-xml-daily.ru/daily_json.js") { [weak self] (result) in
+            guard let self = self else { return }
             self.currency = result
             DispatchQueue.main.async {
                             self.tableView.reloadData()
